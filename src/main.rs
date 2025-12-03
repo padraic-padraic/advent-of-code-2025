@@ -21,6 +21,10 @@ ARGS:
   Input:                Path to a puzzle input file, or a directory of puzzle files named 'day01.txt', 'day11.txt' etc.
 ";
 
+fn parse_optional_path(s: &std::ffi::OsStr) -> Result<std::path::PathBuf, &'static str> {
+    Ok(s.into())
+}
+
 fn parse_args() -> Result<AoCArgs, pico_args::Error> {
     let mut pargs = pico_args::Arguments::from_env();
     if pargs.contains(["-h", "--help"]) {
@@ -30,7 +34,7 @@ fn parse_args() -> Result<AoCArgs, pico_args::Error> {
     let args = AoCArgs {
         part: pargs.opt_value_from_str("--part")?,
         day: pargs.free_from_str()?,
-        input: pargs.free_from_str()?,
+        input: pargs.opt_value_from_os_str("--input", parse_optional_path)?,
     };
     let leftovers = pargs.finish();
     if !leftovers.is_empty() {
