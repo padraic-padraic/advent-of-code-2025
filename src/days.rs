@@ -1,5 +1,6 @@
 pub mod utils;
 pub mod day01;
+pub mod day02;
 
 #[derive(PartialEq, Debug)]
 pub enum PuzzleParts {
@@ -31,6 +32,7 @@ pub fn dispatch_to_day(args: &AoCArgs) -> Result<(), String> {
             if let Some(parts) = part_selection {
                 match args.day {
                     1 => day01::solution(input_path.as_path(), parts),
+                    2 => day02::solution(input_path.as_path(), parts),
                     _ => Err(format!("Day {} not yet implemented.", args.day)),
                 }
             } else {

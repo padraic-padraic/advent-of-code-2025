@@ -60,7 +60,6 @@ fn part2(dial_moves: &Vec<i32>) -> Result<i32, String> {
                 (false, false, false) => 1,
                 _ => 0,
             };
-            // println!("Passed zero {}", passed_zero == 1);
             DialState {
                 zero_count: if new_position == 0 {
                     dial_state.zero_count + 1 + rotation_count
