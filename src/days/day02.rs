@@ -34,7 +34,7 @@ impl FromStr for IdRange {
 
 impl IdRange {
     fn sum_invalid_ids(&self) -> u64 {
-        (self.start..self.end).fold(0, |sum, number| {
+        (self.start..=self.end).fold(0, |sum, number| {
             let s = number.to_string();
             let digits = s.chars().count();
             if digits % 2 == 0 {
@@ -46,6 +46,13 @@ impl IdRange {
                 }
             }
             sum
+        })
+    }
+
+    fn sum_all_invalid_ids -> u64 {
+        (self.start..=self.end).fold(0, |sum, number| {
+            let s = number.to_string();
+            let n_digits = s.chars().count();
         })
     }
 }
